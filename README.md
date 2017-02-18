@@ -19,14 +19,14 @@ Make sure to follow these guidelines when collaborating:
 * Try to use bug IDs and commit IDs where you can to be more specific.
 * If you have several spurious commits(ex: correcting spelling mistakes) then squash before you commit.
 
-## Push Requests
+## Pull Requests
 When you begin to work on a feature, create a new branch for that feature. Once you're done working on it, issue a pull request
 to merge with master. The pull request allows us to have a notification to test your module/feature.
 
 Before any pull request can be approved it must be tested. This means that we have to prepare a test requiremesnt and outcome document.
 The test requirements will be written by the programmer of that feature and will include
 things like the expected operating input ranges and the expected outputs. A tester will then use this document to
-test the feature/module. Only after the test outcome report has been published with an approval stamp, can the push request be approved.
+test the feature/module. Only after the test outcome report has been published with an approval stamp, can the pull request be approved.
 
 ## Feature and Module Development
 A feature/module can be any component of code such as an interface, a function, a class or a modification to an algorithm. The requirements
