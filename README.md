@@ -32,3 +32,11 @@ test the feature/module. Only after the test outcome report has been published w
 A feature/module can be any component of code such as an interface, a function, a class or a modification to an algorithm. The requirements
 are that the feature be self contained and easy to merge into the codebase.
 
+## Current Modules/Classes
+* `EntryPoint` - Serves as the starting point of the program.
+* `GlobalDefinitions` - Contains `static final` variables that will be accessible anywhere in the program. Constants like wheel radius, wheel base, light sensor offset, etc.
+* `Navigator` - Provides high level way to move the robot around the field. It will provide coordinate and heading based movement. Will be created as a thread.
+* `Odometer` - Provides internal tracking of the robot's position and heading using tachometers.
+* `OdomterCorrection` - Complements the `Odometer` module by correcting it's position and heading using information from the light sensors.
+* `WifiReader` - Listens on WiFi to receive instructions for the competition.
+* `BallLauncer` - Uses an unregulated motor to launch a ball. The launch structure is to be decided.
