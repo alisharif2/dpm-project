@@ -1,6 +1,4 @@
-/**
- * 
- */
+package src;
 
 /**
  * @author Team 2
@@ -13,6 +11,9 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
+			System.out.println("Test");
 
 	}
 
