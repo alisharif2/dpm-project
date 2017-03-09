@@ -1,3 +1,4 @@
+package dpmproject;
 /*
  * File: Odometer.java
  * Written by: Sean Lawlor
@@ -28,9 +29,10 @@
 
 import lejos.utility.Timer;
 import lejos.utility.TimerListener;
+import interfacePackages.OdometerInterface;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 
-public class Odometer implements TimerListener {
+public class Odometer implements TimerListener, OdometerInterface {
 
 	private Timer timer;
 	private EV3LargeRegulatedMotor leftMotor, rightMotor;
@@ -108,6 +110,10 @@ public class Odometer implements TimerListener {
 	}
 
 	// return X value
+	/* (non-Javadoc)
+	 * @see OdometerInterface#getX()
+	 */
+	@Override
 	public double getX() {
 		synchronized (this) {
 			return x;
@@ -115,6 +121,10 @@ public class Odometer implements TimerListener {
 	}
 
 	// return Y value
+	/* (non-Javadoc)
+	 * @see OdometerInterface#getY()
+	 */
+	@Override
 	public double getY() {
 		synchronized (this) {
 			return y;
@@ -122,6 +132,10 @@ public class Odometer implements TimerListener {
 	}
 
 	// return theta value
+	/* (non-Javadoc)
+	 * @see OdometerInterface#getAng()
+	 */
+	@Override
 	public double getAng() {
 		synchronized (this) {
 			return theta;
@@ -129,6 +143,10 @@ public class Odometer implements TimerListener {
 	}
 
 	// set x,y,theta
+	/* (non-Javadoc)
+	 * @see OdometerInterface#setPosition(double[], boolean[])
+	 */
+	@Override
 	public void setPosition(double[] position, boolean[] update) {
 		synchronized (this) {
 			if (update[0])
@@ -141,6 +159,10 @@ public class Odometer implements TimerListener {
 	}
 
 	// return x,y,theta
+	/* (non-Javadoc)
+	 * @see OdometerInterface#getPosition(double[])
+	 */
+	@Override
 	public void getPosition(double[] position) {
 		synchronized (this) {
 			position[0] = x;
@@ -149,6 +171,10 @@ public class Odometer implements TimerListener {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see OdometerInterface#getPosition()
+	 */
+	@Override
 	public double[] getPosition() {
 		synchronized (this) {
 			return new double[] { x, y, theta };

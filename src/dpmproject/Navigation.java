@@ -1,3 +1,4 @@
+package dpmproject;
 /*
  * File: Navigation.java
  * Written by: Sean Lawlor
