@@ -7,7 +7,7 @@ import lejos.utility.Delay;
 public class USLocalizer {
 	public enum LocalizationType { FALLING_EDGE, RISING_EDGE }
 	
-	private final float ROTATION_SPEED = 100;
+	private final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
 	private final int MIN_WALL_DIST = 45;
 	private int filterControl = 0;
 	private final int FILTER_OUT = 20;

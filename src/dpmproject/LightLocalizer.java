@@ -10,8 +10,8 @@ public class LightLocalizer {
 	private SampleProvider colorSensor;
 	private float[] colorData;	
 	
-	public static final float ROTATION_SPEED = 100;
-	public static final double COLOR_SENSOR_OFFSET = 14;	// Distance between center of rotation and the color sensor in cm
+	public static final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
+	public static final double COLOR_SENSOR_OFFSET = GlobalDefinitions.LIGHT_SENSOR_OFFSET;	// Distance between center of rotation and the color sensor in cm
 	private static final double BLACK_RGB = 0.2;
 	private static final int AXIS_CROSS_DELAY = 200, SENSOR_POLL_PERIOD = 10;
 	
