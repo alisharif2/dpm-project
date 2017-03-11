@@ -29,13 +29,13 @@ public final class GlobalDefinitions {
   private static final String leftMotorPort                   = "A";
   private static final String rightMotorPort                  = "D";
   private static final String launcherMotorPort               = "C";
-  private static final String lightSensorPort                 = "1";
+  private static final String colorSensorPort                 = "1";
   private static final String usSensorPort                    = "3";
 
   public static final EV3LargeRegulatedMotor LEFT_MOTOR       = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(leftMotorPort));
   public static final EV3LargeRegulatedMotor RIGHT_MOTOR      = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(rightMotorPort));
   public static final UnregulatedMotor LAUNCHER_MOTOR         = new UnregulatedMotor(LocalEV3.get().getPort(launcherMotorPort));
-  public static final EV3ColorSensor LIGHT_SENSOR             = new EV3ColorSensor(LocalEV3.get().getPort(lightSensorPort));
+  public static final EV3ColorSensor COLOR_SENSOR             = new EV3ColorSensor(LocalEV3.get().getPort(colorSensorPort));
   public static final EV3UltrasonicSensor US_SENSOR           = new EV3UltrasonicSensor(LocalEV3.get().getPort(usSensorPort));
 
 }
