@@ -12,7 +12,7 @@ package dpmproject;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 
 public class Navigation {
-	final static int FAST = 50, SLOW = 25, ACCELERATION = 4000;
+	final static int FAST = (int) GlobalDefinitions.FORWARD_SPEED, SLOW = (int) GlobalDefinitions.TURN_SPEED, ACCELERATION = (int) GlobalDefinitions.ACCELERATION;
 	final static double DEG_ERR = 1.0, CM_ERR = 1.0;
 	private Odometer odometer;
 	private EV3LargeRegulatedMotor leftMotor, rightMotor;
