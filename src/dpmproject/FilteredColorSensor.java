@@ -4,6 +4,7 @@
 package dpmproject;
 
 import interfacePackages.SensorInterface;
+import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
@@ -11,16 +12,43 @@ import lejos.utility.Delay;
  * @author Ali
  *
  */
-public class FilteredColorSensor implements SensorInterface {
+public class FilteredColorSensor extends Thread implements SensorInterface {
 	
 	private static final long SENSOR_POLL_PERIOD = 10, NUMBER_OF_SAMPLES = 5;
 	private SampleProvider colorSensorSampleProvider;
 	private float[] colorData;
 	
-	public FilteredColorSensor() {
+	private double reading;
+	
+	public FilteredColorSensor(EV3ColorSensor colorSensor) {
 		// TODO Auto-generated constructor stub
-		this.colorSensorSampleProvider = GlobalDefinitions.COLOR_SENSOR.getMode("RGB");
+		this.colorSensorSampleProvider = colorSensor.getMode("RGB");
 		this.colorData = new float[colorSensorSampleProvider.sampleSize()];
+	}
+	
+	@Override
+	public void run() {
+		long updateStart, updateEnd;
+
+		while (true) {
+			updateStart = System.currentTimeMillis();
+			
+			synchronized (this) {
+				this.reading = getFilteredData();
+			}
+
+			// this ensures that the odometer only runs once every period
+			updateEnd = System.currentTimeMillis();
+			if (updateEnd - updateStart < SENSOR_POLL_PERIOD * 10) {
+				try {
+					Thread.sleep(SENSOR_POLL_PERIOD * 10 - (updateEnd - updateStart));
+				} catch (InterruptedException e) {
+					// there is nothing to be done here because it is not
+					// expected that the odometer will be interrupted by
+					// another thread
+				}
+			}
+		}
 	}
 
 	/* (non-Javadoc)
@@ -51,6 +79,13 @@ public class FilteredColorSensor implements SensorInterface {
 		// TODO Auto-generated method stub
 		colorSensorSampleProvider.fetchSample(colorData,  0);
 		return colorData[0] + colorData[1] + colorData[2];
+	}
+
+	@Override
+	public double read() {
+		synchronized (this) {
+			return reading;
+		}
 	}
 
 }

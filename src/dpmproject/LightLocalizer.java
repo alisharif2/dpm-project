@@ -1,24 +1,24 @@
 package dpmproject;
 import java.util.ArrayList;
 
+import interfacePackages.SensorInterface;
 import lejos.hardware.Sound;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
 public class LightLocalizer {
 	private Odometer odo;
-	private SampleProvider colorSensor;
+	private SensorInterface colorSensor;
 	private float[] colorData;	
 	
 	public static final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
 	public static final double COLOR_SENSOR_OFFSET = GlobalDefinitions.LIGHT_SENSOR_OFFSET;	// Distance between center of rotation and the color sensor in cm
-	private static final double BLACK_RGB = 0.2;
-	private static final int AXIS_CROSS_DELAY = 200, SENSOR_POLL_PERIOD = 10;
+	private static final double BLACK_RGB = 0.1;
+	private static final int AXIS_CROSS_DELAY = 300;
 	
-	public LightLocalizer(Odometer odo, SampleProvider colorSensor, float[] colorData) {
+	public LightLocalizer(Odometer odo, SensorInterface colorSensor) {
 		this.odo = odo;
 		this.colorSensor = colorSensor;
-		this.colorData = colorData;
 	}
 	
 	public void doLocalization() {
@@ -42,7 +42,7 @@ public class LightLocalizer {
 		
 		// This code assumes wer're in the third quadrant
 		while(angles.size() < 4) {
-			if(getFilteredData() < BLACK_RGB) {
+			if(colorSensor.getFilteredData() < BLACK_RGB) {
 				Sound.beep();
 				angles.add(odo.getAng());
 				Delay.msDelay(AXIS_CROSS_DELAY);
@@ -58,24 +58,6 @@ public class LightLocalizer {
 		// Let's calculate our heading correction
 		//double headingCorrection = odo.getAng() + 270 - angles.get(0) + (Math.abs(angles.get(0) - angles.get(2)))/2;
 		odo.setPosition(new double [] {x, y, 0.0}, new boolean [] {true, true, false});
-	}
-	
-	// Takes 50ms to get one sample => 20 Hz polling rate
-	public float getFilteredData() {
-		float filteredData = 0;
-		int NUMBER_OF_SAMPLES = 5;
-		
-		// Apply mean filtering
-		for(int i = 0;i < NUMBER_OF_SAMPLES;++i) {
-			colorSensor.fetchSample(colorData, 0);
-			// Sum RGB components to get net RGB color value
-			// Good enough to identify color intensity
-			filteredData += colorData[0] + colorData[1] + colorData[2];
-			Delay.msDelay(SENSOR_POLL_PERIOD);
-		}
-		
-		filteredData = filteredData / 5;
-		return filteredData;
 	}
 
 }

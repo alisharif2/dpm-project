@@ -12,5 +12,7 @@ public interface SensorInterface {
 	public double getFilteredData();
 	
 	public double getRawData();
+	
+	public double read();
 
 }
