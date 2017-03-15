@@ -8,10 +8,10 @@ package utilityPackages;
  * Simple Utility class to emulate 2 valued tuples
  */
 public class Coordinate {
-	int x;
-	int y;
+	public double x;
+	public double y;
 	
-	public Coordinate(int x, int y) {
+	public Coordinate(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}

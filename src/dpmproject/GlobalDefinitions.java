@@ -15,7 +15,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  */
 public final class GlobalDefinitions {
 	
-  public static final double WHEEL_RADIUS                     = 2.4;  // In centimeters
+  public static final double WHEEL_RADIUS                     = 2.05;  // In centimeters
   public static final double WHEEL_BASE                       = 18.5; // In centimeters
   public static final double LIGHT_SENSOR_OFFSET              = 19.0 ; // In centimeters
   public static final double DEG_ERR                          = 3.0;  // In degrees
@@ -23,6 +23,7 @@ public final class GlobalDefinitions {
   public static final double ACCELERATION                     = 4000; // In degrees per second per second
   public static final double FORWARD_SPEED                    = 175.0; // In degrees per second
   public static final double TURN_SPEED                       = 100.0; // In degrees per second
+  public static final double TILE_SIZE                        = 30.48;
 
   public static final int SWING_TIME                          = 500;  // In milliseconds
   
