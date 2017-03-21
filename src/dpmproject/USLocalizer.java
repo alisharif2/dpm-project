@@ -1,6 +1,8 @@
 package dpmproject;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import interfacePackages.SensorInterface;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
@@ -9,18 +11,14 @@ public class USLocalizer {
 	
 	private final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
 	private final int MIN_WALL_DIST = 45;
-	private int filterControl = 0;
-	private final int FILTER_OUT = 20;
 
 	private Odometer odo;
-	private SampleProvider usSensor;
-	private float[] usData;
+	private SensorInterface usSensor;
 	private LocalizationType locType;
 	
-	public USLocalizer(Odometer odo,  SampleProvider usSensor, float[] usData, LocalizationType locType) {
+	public USLocalizer(Odometer odo, SensorInterface us, LocalizationType locType) {
 		this.odo = odo;
-		this.usSensor = usSensor;
-		this.usData = usData;
+		this.usSensor = us;
 		this.locType = locType;
 	}
 	
@@ -37,7 +35,7 @@ public class USLocalizer {
 			
 			// keep rotating until the robot sees a wall, then latch the angle
 			while(true) {
-				if(getFilteredData() < MIN_WALL_DIST) {
+				if(usSensor.getFilteredData() < MIN_WALL_DIST) {
 					alpha = odo.getAng();
 					break;
 				}
@@ -49,7 +47,7 @@ public class USLocalizer {
 			
 			// keep rotating until the robot sees a wall, then latch the angle
 			while(true) {
-				if(getFilteredData() < MIN_WALL_DIST) {
+				if(usSensor.getFilteredData() < MIN_WALL_DIST) {
 					beta = odo.getAng();
 					break;	
 				}
@@ -85,7 +83,7 @@ public class USLocalizer {
 			
 			// keep rotating until the robot sees a wall, then latch the angle
 			while(true) {
-				if(getFilteredData() < MIN_WALL_DIST) {
+				if(usSensor.getFilteredData() < MIN_WALL_DIST) {
 					alpha = odo.getAng();
 					break;
 				}
@@ -96,7 +94,7 @@ public class USLocalizer {
 			
 			// keep rotating until the robot no longer sees a wall, then latch the angle
 			while(true) {
-				if(getFilteredData() > MIN_WALL_DIST) {
+				if(usSensor.getFilteredData() > MIN_WALL_DIST) {
 					beta = odo.getAng();
 					break;
 				}
@@ -117,46 +115,6 @@ public class USLocalizer {
 			odo.setPosition(new double [] {0.0, 0.0, headingCorrection + beta - 90 - SYSTEMATIC_ERR}, new boolean [] {false, false, true});
 			localizerLocomotor.turnTo(0, true);
 		}
-	}
-	
-	// Apply median filtering
-	private float getFilteredData() {
-		// Don't use even numbers
-		final int NUMBER_OF_SAMPLES = 5;
-		float filteredDistance, distance;
-		ArrayList<Float> samples = new ArrayList<Float>();
-		
-		for(int i = 0;i < NUMBER_OF_SAMPLES;++i) {
-			usSensor.fetchSample(usData, 0);
-			distance = usData[0];
-			
-			// I stole this filter from lab1
-			filteredDistance = distance;
-			if (distance >= 255 && filterControl < FILTER_OUT) {
-				// bad value, do not set the distance var, however do increment the
-				// filter value
-				filterControl++;
-			} else if (distance >= 255) {
-				// We have repeated large values, so there must actually be nothing
-				// there: leave the distance alone
-				filteredDistance = distance;
-			} else {
-				// distance went below 255: reset filter and leave
-				// distance alone.
-				filterControl = 0;
-				filteredDistance = distance;
-			}
-			samples.add(filteredDistance);
-			// Use an extremely short delay to make sure we get useful sensor readings
-			Delay.msDelay(10);
-		}
-		
-		// Sort and pick middle value
-		Collections.sort(samples);
-		filteredDistance = samples.get((int)(NUMBER_OF_SAMPLES/2));
-		
-		// Convert to centimeters
-		return filteredDistance * 100;
 	}
 
 }
