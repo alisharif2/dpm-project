@@ -29,16 +29,17 @@ public class EntryPoint {
 		//FilteredColorSensor leftColorSensor = new FilteredColorSensor(GlobalDefinitions.LEFT_COLOR_SENSOR);
 		//FilteredColorSensor rightColorSensor = new FilteredColorSensor(GlobalDefinitions.RIGHT_COLOR_SENSOR);
 		
-		Odometer odo = new Odometer(GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR, 30, true);
+		//Odometer odo = new Odometer(GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR, 30, true);
 		//OdometerCorrection odometerCorrector = new OdometerCorrection(odo, leftColorSensor, rightColorSensor);
-		
+		DemoBallLauncher DBL= new DemoBallLauncher();
+		DBL.fire();
 		//FilteredUltrasonicSensor usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
 		//USLocalizer usl = new USLocalizer(odo, usSensor, USLocalizer.LocalizationType.FALLING_EDGE);
 		//usl.doLocalization();
 		
-		PathfinderInterface pf = new SimplePathfinder(new Coordinate(80, 80), odo);
-		Pilot p = new Pilot(pf, odo);
-		p.turnTo(Math.PI/2);
+		//PathfinderInterface pf = new SimplePathfinder(new Coordinate(80, 80), odo);
+		//Pilot p = new Pilot(pf, odo);
+		//p.turnTo(Math.PI/2);
 	}
 
 }

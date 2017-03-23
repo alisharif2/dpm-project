@@ -19,7 +19,7 @@ public final class GlobalDefinitions {
   public static final double WHEEL_BASE                       = 18.5; // In centimeters
   public static final double LIGHT_SENSOR_OFFSET              = 19.0 ; // In centimeters
   public static final double DEG_ERR                          = 3.0;  // In degrees
-  public static final int DEG_SHOOT                         = 180;  // In degrees
+  public static final int DEG_SHOOT                           = 270;  // In degrees
   public static final double LIN_ERR                          = 1.0;  // In centimeters
   public static final double ACCELERATION                     = 4000; // In degrees per second per second
   public static final double FORWARD_SPEED                    = 175.0; // In degrees per second
@@ -38,7 +38,7 @@ public final class GlobalDefinitions {
 
   public static EV3LargeRegulatedMotor LEFT_MOTOR;
   public static EV3LargeRegulatedMotor RIGHT_MOTOR;
-  public static EV3LargeRegulatedMotor RELOADMOTOR;
+  //public static EV3LargeRegulatedMotor RELOADMOTOR;
   public static EV3LargeRegulatedMotor SHOOTMOTOR;
   public static EV3ColorSensor LEFT_COLOR_SENSOR;
   public static EV3ColorSensor RIGHT_COLOR_SENSOR;
@@ -47,7 +47,7 @@ public final class GlobalDefinitions {
   public static void init() {
 	  GlobalDefinitions.LEFT_MOTOR         = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.leftMotorPort));
 	  GlobalDefinitions.RIGHT_MOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.rightMotorPort));
-	  GlobalDefinitions.RELOADMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.reloadMotorPort));
+	  //GlobalDefinitions.RELOADMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.reloadMotorPort));
 	  GlobalDefinitions.SHOOTMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.shooterMotorPort));
 	  GlobalDefinitions.LEFT_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.leftColorSensorPort));
 	  GlobalDefinitions.RIGHT_COLOR_SENSOR = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rightColorSensorPort));
