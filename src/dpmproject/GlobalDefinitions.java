@@ -3,6 +3,7 @@ package dpmproject;
  * 
  */
 
+import utilityPackages.Coordinate;
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.UnregulatedMotor;
@@ -44,6 +45,20 @@ public final class GlobalDefinitions {
   public static EV3ColorSensor RIGHT_COLOR_SENSOR;
   public static EV3UltrasonicSensor US_SENSOR;
   
+  public static int FWD_TEAM = -1;
+  public static int FWD_CORNER = 1;
+  public static int DEF_TEAM = -1;
+  public static int DEF_CORNER = -1;
+  public static int d1 = -1;
+  public static int w1 = -1;
+  public static int w2 = -1;
+  public static int bx = -1;
+  public static int by = -1;
+  public static int omega = -1;
+  
+  public static final Coordinate HOOP_POSITION = new Coordinate(5,6); 
+  
+  
   public static void init() {
 	  GlobalDefinitions.LEFT_MOTOR         = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.leftMotorPort));
 	  GlobalDefinitions.RIGHT_MOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.rightMotorPort));
@@ -52,6 +67,7 @@ public final class GlobalDefinitions {
 	  GlobalDefinitions.LEFT_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.leftColorSensorPort));
 	  GlobalDefinitions.RIGHT_COLOR_SENSOR = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rightColorSensorPort));
 	  GlobalDefinitions.US_SENSOR          = new EV3UltrasonicSensor(LocalEV3.get().getPort(GlobalDefinitions.usSensorPort));
+	  
   }
 
 }
