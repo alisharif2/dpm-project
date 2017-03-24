@@ -17,14 +17,14 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 public final class GlobalDefinitions {
 	
   public static final double WHEEL_RADIUS                     = 2.05;  // In centimeters
-  public static final double WHEEL_BASE                       = 18.5; // In centimeters
+  public static final double WHEEL_BASE                       = 17.15; // In centimeters
   public static final double LIGHT_SENSOR_OFFSET              = 17.0 ; // In centimeters
-  public static final double DEG_ERR                          = 3.0;  // In degrees
+  public static final double DEG_ERR                          = 2.0;  // In degrees
   public static final int DEG_SHOOT                           = 270;  // In degrees
-  public static final double LIN_ERR                          = 1.0;  // In centimeters
+  public static final double LIN_ERR                          = 0.5;  // In centimeters
   public static final double ACCELERATION                     = 4000; // In degrees per second per second
-  public static final double FORWARD_SPEED                    = 175.0; // In degrees per second
-  public static final double TURN_SPEED                       = 100.0; // In degrees per second
+  public static final double FORWARD_SPEED                    = 125.0; // In degrees per second
+  public static final double TURN_SPEED                       = 75.0; // In degrees per second
   public static final double TILE_SIZE                        = 30.48;
 
   public static final int SWING_TIME                          = 500;  // In milliseconds
@@ -65,11 +65,11 @@ public final class GlobalDefinitions {
 	  GlobalDefinitions.LEFT_MOTOR         = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.leftMotorPort));
 	  GlobalDefinitions.RIGHT_MOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.rightMotorPort));
 	  //GlobalDefinitions.RELOADMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.reloadMotorPort));
-	  GlobalDefinitions.SHOOTMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.shooterMotorPort));
-	  GlobalDefinitions.LEFT_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.leftColorSensorPort));
-	  GlobalDefinitions.RIGHT_COLOR_SENSOR = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rightColorSensorPort));
-	  GlobalDefinitions.US_SENSOR          = new EV3UltrasonicSensor(LocalEV3.get().getPort(GlobalDefinitions.usSensorPort));
-	  GlobalDefinitions.REAR_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rearColorSensorPort));
+	  //GlobalDefinitions.SHOOTMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.shooterMotorPort));
+	  //GlobalDefinitions.LEFT_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.leftColorSensorPort));
+	  //GlobalDefinitions.RIGHT_COLOR_SENSOR = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rightColorSensorPort));
+	  //GlobalDefinitions.US_SENSOR          = new EV3UltrasonicSensor(LocalEV3.get().getPort(GlobalDefinitions.usSensorPort));
+	  //GlobalDefinitions.REAR_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rearColorSensorPort));
 	  
   }
 
