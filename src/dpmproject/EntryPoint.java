@@ -29,7 +29,7 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		
-		WifiConnection conn = new WifiConnection("192.168.2.6", 2, false);
+		WifiConnection conn = new WifiConnection("192.168.2.3", 2, false);
 
 		// Connect to server and get the data, catching any errors that might
 		// occur
@@ -49,22 +49,25 @@ public class EntryPoint {
 				
 		Odometer odo = new Odometer(GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR, 30, true);
 		
-		float[] data = new float[GlobalDefinitions.US_SENSOR.sampleSize()];
-		FilteredUltrasonicSensor usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
-		RoughUSLocalizer usl = new RoughUSLocalizer(odo, GlobalDefinitions.US_SENSOR.getDistanceMode(), data,RoughUSLocalizer.LocalizationType.FALLING_EDGE, GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR);
-		//usl.doLocalization();
-		
-		//Delay.msDelay(1000);
-		Sound.beep();
-		
 		Navigation nav = new Navigation(odo);
-		//nav.travelTo(10, 10);
 		
 		FilteredColorSensor rearColor = new FilteredColorSensor(GlobalDefinitions.REAR_COLOR_SENSOR);
 		LightLocalizer lsl = new LightLocalizer(odo, rearColor);
 		lsl.doLocalization();
 		
-		nav.travelTo(30, 30);
+		float[] data = new float[GlobalDefinitions.US_SENSOR.sampleSize()];
+		FilteredUltrasonicSensor usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
+		RoughUSLocalizer usl = new RoughUSLocalizer(odo, GlobalDefinitions.US_SENSOR.getDistanceMode(), data,RoughUSLocalizer.LocalizationType.FALLING_EDGE, GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR);
+		usl.doLocalization();
+		
+		Sound.beep();
+		
+		nav.travelTo(5 * GlobalDefinitions.TILE_SIZE, GlobalDefinitions.d1 * GlobalDefinitions.TILE_SIZE);
+		nav.turnTo(0, true);
+		
+		DemoBallLauncher d = new DemoBallLauncher();
+		d.fire();
+		
 	}
 
 }
