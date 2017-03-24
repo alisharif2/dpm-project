@@ -6,7 +6,7 @@ import interfacePackages.SensorInterface;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
-public class USLocalizer {
+public class FrameworkUSLocalizer {
 	public enum LocalizationType { FALLING_EDGE, RISING_EDGE }
 	
 	private final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
@@ -16,7 +16,7 @@ public class USLocalizer {
 	private SensorInterface usSensor;
 	private LocalizationType locType;
 	
-	public USLocalizer(Odometer odo, SensorInterface us, LocalizationType locType) {
+	public FrameworkUSLocalizer(Odometer odo, SensorInterface us, LocalizationType locType) {
 		this.odo = odo;
 		this.usSensor = us;
 		this.locType = locType;

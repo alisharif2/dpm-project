@@ -13,7 +13,7 @@ public class LightLocalizer {
 	
 	public static final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
 	public static final double COLOR_SENSOR_OFFSET = GlobalDefinitions.LIGHT_SENSOR_OFFSET;	// Distance between center of rotation and the color sensor in cm
-	private static final double BLACK_RGB = 0.1;
+	private static final double BLACK_RGB = 0.4;
 	private static final int AXIS_CROSS_DELAY = 300;
 	
 	public LightLocalizer(Odometer odo, SensorInterface colorSensor) {
@@ -56,8 +56,8 @@ public class LightLocalizer {
 		// Lets calculate our y position
 		double y = (COLOR_SENSOR_OFFSET) * Math.cos(Math.toRadians(Math.abs(angles.get(1) - angles.get(3)))/2);
 		// Let's calculate our heading correction
-		//double headingCorrection = odo.getAng() + 270 - angles.get(0) + (Math.abs(angles.get(0) - angles.get(2)))/2;
-		odo.setPosition(new double [] {x, y, 0.0}, new boolean [] {true, true, false});
+		double headingCorrection = odo.getAng() + 270 - angles.get(0) + (Math.abs(angles.get(0) - angles.get(2)))/2;
+		odo.setPosition(new double [] {x, y, headingCorrection}, new boolean [] {true, true, true});
 	}
 
 }
