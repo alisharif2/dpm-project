@@ -20,9 +20,10 @@ public class SimplePathfinder implements PathfinderInterface {
 	public SimplePathfinder(Coordinate target, OdometerInterface odo) {
 		// TODO Auto-generated constructor stub
 		
-		// First follow x axis
+		// First follow y axis
+		coords.push(new Coordinate(target.x, target.y));
 		coords.push(new Coordinate(odo.getX(), target.y));
-		coords.push(new Coordinate(target.x, odo.getY()));
+
 	}
 
 	@Override
