@@ -22,7 +22,7 @@ public final class GlobalDefinitions {
   public static final double LIGHT_SENSOR_OFFSET              = 17.0 ; // In centimeters
   public static final double DEG_ERR                          = 2.5;  // In degrees
   public static final int DEG_SHOOT                           = 270;  // In degrees
-  public static final double LIN_ERR                          = 0.5;  // In centimeters
+  public static final double LIN_ERR                          = 1.0;  // In centimeters
   public static final double ACCELERATION                     = 4000; // In degrees per second per second
   public static final double FORWARD_SPEED                    = 125.0; // In degrees per second
   public static final double TURN_SPEED                       = 100.0; // In degrees per second
