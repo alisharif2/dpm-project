@@ -32,7 +32,6 @@ public class Pilot implements PilotInterface {
 		while(this.pathfinder.hasNextStep()) {
 			Coordinate c = pathfinder.getNextStep();
 			nav.travelTo(c.x, c.y);
-			Delay.msDelay(1000);
 		}
 	}
 }
