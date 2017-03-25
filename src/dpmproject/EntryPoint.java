@@ -30,7 +30,7 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		
-		WifiConnection conn = new WifiConnection("192.168.2.14", 2, false);
+		WifiConnection conn = new WifiConnection("192.168.2.6", 2, false);
 
 		// Connect to server and get the data, catching any errors that might
 		// occur
@@ -63,8 +63,8 @@ public class EntryPoint {
 		
 		Sound.beep();
 		
-		nav.travelTo(0, GlobalDefinitions.d1*GlobalDefinitions.TILE_SIZE );
-		//nav.turnTo(0, true);
+		nav.travelTo(0, 10*GlobalDefinitions.TILE_SIZE );
+		nav.turnTo(0, true);
 		
 		DemoBallLauncher d = new DemoBallLauncher();
 		//d.fire();

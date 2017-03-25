@@ -28,15 +28,15 @@ public class FrameworkUSLocalizer {
 			cornerAngle=0;
 		}
 		if (corner==2){
-			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE,0};
+			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE+12,0};
 			cornerAngle=270;
 		}
 		if (corner==3){
-			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE,10*GlobalDefinitions.TILE_SIZE};
+			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE+12,10*GlobalDefinitions.TILE_SIZE+12};
 			cornerAngle=180;
 		}
 		if (corner==4){
-			cornerPos=new double[] {0,10*GlobalDefinitions.TILE_SIZE};
+			cornerPos=new double[] {0,10*GlobalDefinitions.TILE_SIZE+12};
 			cornerAngle=90;
 		}
 		// Initialize our locomotor
@@ -81,7 +81,7 @@ public class FrameworkUSLocalizer {
 		localizerLocomotor.turnTo(90, true);
 		
 		
-		double[] x=new double[] {cornerPos[0]-2,cornerPos[1]-9};
+		double[] x=new double[] {cornerPos[0]-6,cornerPos[1]-9};
 		odo.setPosition(new double[] {x[0], x[1], 0}, new boolean [] {true, true, false});
 		
 		localizerLocomotor.turnTo(0, true);
