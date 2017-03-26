@@ -28,7 +28,8 @@ public final class GlobalDefinitions {
   public static final double TURN_SPEED                       = 100.0; // In degrees per second
   public static final double TILE_SIZE                        = 30.48;
 
-  public static final int SWING_TIME                          = 500;  // In milliseconds
+  public static final Coordinate[] startPoints    = {new Coordinate(0, 0), new Coordinate(10, 0), new Coordinate(10, 10), new Coordinate(0, 10)};
+  public static final double[] startOrientations =  {0, 90, 180, 270};
   
   private static final String leftMotorPort                   = "A";
   private static final String rightMotorPort                  = "D";
