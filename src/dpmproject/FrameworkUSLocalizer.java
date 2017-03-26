@@ -60,15 +60,21 @@ public class FrameworkUSLocalizer {
 		}
 				
 		// update the odometer position with our new heading(zero degrees)
-		odo.setPosition(new double [] {0, 0, headingCorrection + beta - 90}, new boolean [] {false, false, true});
+		odo.setPosition(new double [] {0, 0, headingCorrection + beta}, new boolean [] {false, false, true});
 		Delay.msDelay(200);
-		localizerLocomotor.turnTo(90, true);
+		localizerLocomotor.turnTo(180, true);
 		
-		double x = GlobalDefinitions.TILE_SIZE - usSensor.getFilteredData();
+		double x = usSensor.getFilteredData() - GlobalDefinitions.TILE_SIZE;
 		odo.setPosition(new double[] {x, x, 0}, new boolean [] {true, true, false});
 		
+		localizerLocomotor.travelTo(0, 0);
 		localizerLocomotor.turnTo(0, true);
 		Delay.msDelay(200);
+		
+		odo.setPosition(new double[] {GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].x, GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].y, GlobalDefinitions.startOrientations[GlobalDefinitions.FWD_CORNER]},
+				new boolean[] {true, true, true});
+		
+		localizerLocomotor.turnTo(0, true);
 	}
 
 }
