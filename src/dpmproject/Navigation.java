@@ -10,6 +10,7 @@ package dpmproject;
  * Movement control class (turnTo, travelTo, flt, localize)
  */
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.utility.Delay;
 
 public class Navigation {
 	final static int FAST = (int) GlobalDefinitions.FORWARD_SPEED, SLOW = (int) GlobalDefinitions.TURN_SPEED, ACCELERATION = (int) GlobalDefinitions.ACCELERATION;
@@ -80,6 +81,7 @@ public class Navigation {
 				minAng += 360.0;
 			this.turnTo(minAng, true);
 			this.setSpeeds(FAST, FAST);
+			Delay.msDelay(200);
 		}
 		this.setSpeeds(0, 0);
 	}

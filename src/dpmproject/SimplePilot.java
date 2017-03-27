@@ -16,19 +16,26 @@ public class SimplePilot implements PilotInterface {
 	private int ROTATE_SPEED = (int) GlobalDefinitions.TURN_SPEED;
 	private double track = GlobalDefinitions.WHEEL_BASE;
 	private double radius = GlobalDefinitions.WHEEL_RADIUS;
+	private OdometerCorrection corrector;
 
 
-	public SimplePilot(PathfinderInterface p, Odometer odo) {
+	public SimplePilot(PathfinderInterface p, Odometer odo, OdometerCorrection corrector) {
 		// TODO Auto-generated constructor stub
 		this.pathfinder = p;
 		this.odo = odo;
+		this.corrector = corrector;
 	}
 
 	@Override
 	public void travel() {
 		// TODO Auto-generated method stub
 		while(this.pathfinder.hasNextStep()) {
+			corrector.correctY();
 			Coordinate c = pathfinder.getNextStep();
+			travelTo(c.x, c.y);
+			
+			corrector.correctX();
+			c = pathfinder.getNextStep();
 			travelTo(c.x, c.y);
 		}
 	}
@@ -68,10 +75,6 @@ public class SimplePilot implements PilotInterface {
 		double theta_d = Math.atan2(y - odo.getY(), x - odo.getX()); // returns
 		// angle
 		double err = theta_d - heading;
-		if (err > Math.PI)
-			return err - (2 * Math.PI);
-		if (err < -Math.PI)
-			return err + (2 * Math.PI);
 		return err;
 	}
 

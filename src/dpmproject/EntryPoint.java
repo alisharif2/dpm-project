@@ -33,33 +33,50 @@ public class EntryPoint {
 		GlobalDefinitions.init();
 		Odometer odo = new Odometer(GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR, 30, true);
 		
+		FilteredColorSensor leftColor = new FilteredColorSensor(GlobalDefinitions.LEFT_COLOR_SENSOR);
+		FilteredColorSensor rightColor = new FilteredColorSensor(GlobalDefinitions.RIGHT_COLOR_SENSOR);
+		OdometerCorrection corrector = new OdometerCorrection(odo, leftColor, rightColor);
+		
+		GlobalDefinitions.FWD_CORNER = 0;
+			
+		SensorInterface usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
+		FrameworkUSLocalizer usl = new FrameworkUSLocalizer(odo, usSensor);
+		//usl.doLocalization();
+		Sound.beep();
+		
+		Navigation nav = new Navigation(odo);
+		
+		corrector.start();
+		corrector.correctX();
+		nav.travelTo(60, 0);
+		
+		corrector.correctY();
+		nav.travelTo(60, 60);
+	}
+	
+	public static void initFromWifi() {
+		Map data = null;
+		
 		WifiConnection conn = new WifiConnection("192.168.2.3", 2, false);
 		// Connect to server and get the data, catching any errors that might
 		// occur
 		try {
-			Map data = conn.getData();
-			initFromWifi(data);
+			data = conn.getData();
+			
+			GlobalDefinitions.d1 = ((Long) data.get("d1")).intValue();
+			GlobalDefinitions.FWD_CORNER = ((Long) data.get("FWD_CORNER")).intValue() - 1;
+			GlobalDefinitions.DEF_CORNER = ((Long) data.get("DEF_CORNER")).intValue() - 1;
+			GlobalDefinitions.w1 = ((Long) data.get("w1")).intValue();
+			GlobalDefinitions.w2 = ((Long) data.get("w2")).intValue();
+			GlobalDefinitions.bx = ((Long) data.get("bx")).intValue();
+			GlobalDefinitions.by = ((Long) data.get("by")).intValue();
+			GlobalDefinitions.omega = ((Long) data.get("omega")).intValue();
+		} catch(NullPointerException e) {
+			System.err.println("Data was not loaded from wifi. Data variable is null");
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 		Sound.beep();
-			
-		SensorInterface usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
-		FrameworkUSLocalizer usl = new FrameworkUSLocalizer(odo, usSensor);
-		usl.doLocalization();
-		Sound.beep();
-		
-	}
-	
-	public static void initFromWifi(Map data) {
-		GlobalDefinitions.d1 = ((Long) data.get("d1")).intValue();
-		GlobalDefinitions.FWD_CORNER = ((Long) data.get("FWD_CORNER")).intValue() - 1;
-		GlobalDefinitions.DEF_CORNER = ((Long) data.get("DEF_CORNER")).intValue() - 1;
-		GlobalDefinitions.w1 = ((Long) data.get("w1")).intValue();
-		GlobalDefinitions.w2 = ((Long) data.get("w2")).intValue();
-		GlobalDefinitions.bx = ((Long) data.get("bx")).intValue();
-		GlobalDefinitions.by = ((Long) data.get("by")).intValue();
-		GlobalDefinitions.omega = ((Long) data.get("omega")).intValue();
 
 	}
 }

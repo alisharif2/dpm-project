@@ -72,9 +72,7 @@ public class FrameworkUSLocalizer {
 		Delay.msDelay(200);
 		
 		odo.setPosition(new double[] {GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].x, GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].y, GlobalDefinitions.startOrientations[GlobalDefinitions.FWD_CORNER]},
-				new boolean[] {true, true, true});
-		
-		localizerLocomotor.turnTo(0, true);
+				new boolean[] {true, true, true});		
 	}
 
 }

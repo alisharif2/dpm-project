@@ -12,9 +12,9 @@ import lejos.utility.Delay;
  * @author Ali
  *
  */
-public class FilteredColorSensor extends Thread implements SensorInterface {
+public class FilteredColorSensor implements SensorInterface {
 	
-	private static final long SENSOR_POLL_PERIOD = 10, NUMBER_OF_SAMPLES = 5;
+	private static final long SENSOR_POLL_PERIOD = 5, NUMBER_OF_SAMPLES = 5;
 	private SampleProvider colorSensorSampleProvider;
 	private float[] colorData;
 	
@@ -24,31 +24,6 @@ public class FilteredColorSensor extends Thread implements SensorInterface {
 		// TODO Auto-generated constructor stub
 		this.colorSensorSampleProvider = colorSensor.getMode("RGB");
 		this.colorData = new float[colorSensorSampleProvider.sampleSize()];
-	}
-	
-	@Override
-	public void run() {
-		long updateStart, updateEnd;
-
-		while (true) {
-			updateStart = System.currentTimeMillis();
-			
-			synchronized (this) {
-				this.reading = getFilteredData();
-			}
-
-			// this ensures that the odometer only runs once every period
-			updateEnd = System.currentTimeMillis();
-			if (updateEnd - updateStart < SENSOR_POLL_PERIOD * 10) {
-				try {
-					Thread.sleep(SENSOR_POLL_PERIOD * 10 - (updateEnd - updateStart));
-				} catch (InterruptedException e) {
-					// there is nothing to be done here because it is not
-					// expected that the odometer will be interrupted by
-					// another thread
-				}
-			}
-		}
 	}
 
 	/* (non-Javadoc)
