@@ -18,7 +18,7 @@ import lejos.robotics.RegulatedMotor;
 public final class GlobalDefinitions {
 	
   public static final double WHEEL_RADIUS                     = 4.05/2;  // In centimeters
-  public static final double WHEEL_BASE                       = 15.351 + 2.188; // In centimeters
+  public static final double WHEEL_BASE                       = 19.80;
   public static final double LIGHT_SENSOR_OFFSET              = 17.0 ; // In centimeters
   public static final double DEG_ERR                          = 1.5;  // In degrees
   public static final int DEG_SHOOT                           = 270;  // In degrees

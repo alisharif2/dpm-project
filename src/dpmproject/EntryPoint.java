@@ -44,14 +44,12 @@ public class EntryPoint {
 		//usl.doLocalization();
 		Sound.beep();
 		
-		Navigation nav = new Navigation(odo);
+		TestDriver td = new TestDriver(odo);
 		
-		corrector.start();
-		corrector.correctX();
-		nav.travelTo(60, 0);
+		td.travelTo(new Coordinate(30,30));
+		td.travelTo(new Coordinate(15,45));
 		
-		corrector.correctY();
-		nav.travelTo(60, 60);
+		
 	}
 	
 	public static void initFromWifi() {
