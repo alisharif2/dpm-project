@@ -34,9 +34,7 @@ public class TestDriver {
 		
 		Coordinate coordinateY = new Coordinate(odo.getX(), coordinate.y);
 		
-		double minAng = (Math.atan2(coordinateY.y - odo.getY(), coordinateY.x - odo.getX())) * (180.0 / Math.PI);
-		if (minAng < 0)
-			minAng += 360.0;
+		double minAng = getAng(coordinateY);
 		
 		leftMotor.setSpeed(ROTATE_SPEED);
 		rightMotor.setSpeed(ROTATE_SPEED);
@@ -46,7 +44,7 @@ public class TestDriver {
 		leftMotor.setSpeed(ROTATE_SPEED);
 		rightMotor.setSpeed(ROTATE_SPEED);
 
-		double distance = Math.abs(odo.getY() - coordinateY.y);
+		double distance = Math.abs(odo.getY() - coordinate.y);
 		
 		leftMotor.rotate(convertDistance(radius, distance), true);
 		rightMotor.rotate(convertDistance(radius, distance), false);
@@ -54,9 +52,7 @@ public class TestDriver {
 		
 		Coordinate coordinateX = new Coordinate(coordinate.x, odo.getY());
 		
-		minAng = (Math.atan2(coordinateY.y - odo.getY(), coordinateY.x - odo.getX())) * (180.0 / Math.PI);
-		if (minAng < 0)
-			minAng += 360.0;
+		minAng = getAng(coordinateX);
 		
 		leftMotor.setSpeed(ROTATE_SPEED);
 		rightMotor.setSpeed(ROTATE_SPEED);
@@ -66,10 +62,23 @@ public class TestDriver {
 		leftMotor.setSpeed(ROTATE_SPEED);
 		rightMotor.setSpeed(ROTATE_SPEED);
 
-		distance = Math.abs(odo.getX() - coordinateX.x);
+		distance = Math.abs(odo.getX() - coordinate.x);
+		
+		System.out.println(odo.getX());
+		System.out.println(distance);
 		
 		leftMotor.rotate(convertDistance(radius, distance), true);
 		rightMotor.rotate(convertDistance(radius, distance), false);
+		
+	}
+	
+	public double getAng(Coordinate coordinate){
+		
+		double minAng = (Math.atan2(coordinate.y - odo.getY(), coordinate.x - odo.getX())) * (180.0 / Math.PI);
+		if (minAng < 0)
+			minAng += 360.0;
+		
+		return minAng;
 		
 	}
 	

@@ -46,8 +46,10 @@ public class EntryPoint {
 		
 		TestDriver td = new TestDriver(odo);
 		
-		td.travelTo(new Coordinate(30,30));
-		td.travelTo(new Coordinate(15,45));
+		td.travelTo(new Coordinate(-5*30.44-2,6*30.44-2));
+		//td.travelTo(new Coordinate(-15,45));
+		
+		td.turnTo((td.getAng(new Coordinate(-5*30.44-2,6*30.44-2))) + Math.PI,true);
 		
 		
 	}
