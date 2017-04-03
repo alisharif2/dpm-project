@@ -42,7 +42,7 @@ public final class GlobalDefinitions {
 
   public static EV3LargeRegulatedMotor LEFT_MOTOR;
   public static EV3LargeRegulatedMotor RIGHT_MOTOR;
-  //public static EV3LargeRegulatedMotor RELOADMOTOR;
+  public static EV3LargeRegulatedMotor RELOADMOTOR;
   public static EV3LargeRegulatedMotor SHOOTMOTOR;
   public static EV3ColorSensor LEFT_COLOR_SENSOR;
   public static EV3ColorSensor RIGHT_COLOR_SENSOR;
@@ -66,7 +66,7 @@ public final class GlobalDefinitions {
   public static void init() {
 	  GlobalDefinitions.LEFT_MOTOR         = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.leftMotorPort));
 	  GlobalDefinitions.RIGHT_MOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.rightMotorPort));
-	  //GlobalDefinitions.RELOADMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.reloadMotorPort));
+	  GlobalDefinitions.RELOADMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.reloadMotorPort));
 	  GlobalDefinitions.SHOOTMOTOR        = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(GlobalDefinitions.shooterMotorPort));
 	  GlobalDefinitions.LEFT_COLOR_SENSOR  = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.leftColorSensorPort));
 	  GlobalDefinitions.RIGHT_COLOR_SENSOR = new EV3ColorSensor(LocalEV3.get().getPort(GlobalDefinitions.rightColorSensorPort));

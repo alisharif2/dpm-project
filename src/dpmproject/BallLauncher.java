@@ -3,21 +3,27 @@ package dpmproject;
  * 
  */
 import interfacePackages.BallLauncherInterface;
+import lejos.hardware.Sound;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
 /**
  * @author Ali
  *
  */
 public class BallLauncher extends Thread implements BallLauncherInterface {
 
+	
 	@Override
 	public boolean reload() {
-		// TODO Auto-generated method stub
+		pullElasticBack();
+		dropBall();
 		return false;
 	}
 
 	@Override
 	public void fire() {
-		// TODO Auto-generated method stub
+		GlobalDefinitions.SHOOTMOTOR.rotate(-250);
+		Sound.beep();
+		GlobalDefinitions.SHOOTMOTOR.rotate(250);
 		
 	}
 
@@ -27,4 +33,22 @@ public class BallLauncher extends Thread implements BallLauncherInterface {
 		return false;
 	}
 
+	public void pullElasticBack(){
+		GlobalDefinitions.RELOADMOTOR.setSpeed(600);
+		GlobalDefinitions.RELOADMOTOR.rotate(362*27);
+		Sound.beep();
+		GlobalDefinitions.RELOADMOTOR.rotate(-362*27);
+	}
+	
+	public void dropBall(){
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
+		GlobalDefinitions.SHOOTMOTOR.rotate(500);
+		Sound.beep();
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(50);
+
+		GlobalDefinitions.SHOOTMOTOR.rotate(-500);
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
+
+	}
+	
 }
