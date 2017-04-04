@@ -3,6 +3,7 @@ package dpmproject;
  * 
  */
 
+import java.io.File;
 import java.util.Map;
 
 import interfacePackages.PathfinderInterface;
@@ -30,7 +31,7 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		
-		initFromWifi();
+		//initFromWifi();
 		GlobalDefinitions.init();
 		Odometer odo = new Odometer(GlobalDefinitions.LEFT_MOTOR, GlobalDefinitions.RIGHT_MOTOR, 30, true);
 
@@ -39,12 +40,19 @@ public class EntryPoint {
 		
 		SensorInterface usSensor = new FilteredUltrasonicSensor(GlobalDefinitions.US_SENSOR);
 		FrameworkUSLocalizer usl = new FrameworkUSLocalizer(odo, usSensor);
-		usl.doLocalization();
 		
-		//Turn to "our" 0 degrees.
-		//Set odometer to (0,0) + offset according to corner.
-		//Set angle to 0
+		// FOR TESTING 
 		
+		GlobalDefinitions.DEF_TEAM = 2;
+		GlobalDefinitions.d1 = 7;
+		GlobalDefinitions.w2 = 4;
+		GlobalDefinitions.DEF_CORNER = 1;
+		GlobalDefinitions.FWD_CORNER = 1;
+		
+		// END TESTING
+		
+		
+		/*
 		if(GlobalDefinitions.FWD_CORNER == 1){
 			
 		}
@@ -57,26 +65,36 @@ public class EntryPoint {
 		else{
 			
 		}
-		
+		*/
 		
 		TestDriver td = new TestDriver(odo);
 		BallLauncher bl = new BallLauncher();
 		Sound.beep();
 		
-		if(GlobalDefinitions.DEF_TEAM == 2 ){
+		if(GlobalDefinitions.DEF_TEAM == 2){
+
+			usl.doLocalization(GlobalDefinitions.DEF_CORNER);
 			
-			Coordinate defensePosition = new Coordinate(-5 * 30.44, (((10 - (GlobalDefinitions.d1)) + (10 - GlobalDefinitions.w1))/2) * 30.44 );
+			
+			System.out.println(odo.getX());
+			System.out.println(odo.getY());
+			System.out.println(odo.getAng());
+			
+			td.diagonalTravelTo(new Coordinate(0,0));
+
+			
+			Coordinate defensePosition = new Coordinate(5 * 30.44, (((10 - (GlobalDefinitions.d1)) + (10 - GlobalDefinitions.w2))/2) * 30.44 );
 			
 			td.diagonalTravelTo(defensePosition);
 			
-			td.turnTo(0, true);
-			
-			while(true);
+			td.turnTo(90, true);
 			
 		}
 		
 		else{
 	
+			usl.doLocalization(GlobalDefinitions.FWD_CORNER);
+			
 			Coordinate ballDispenser = new Coordinate(GlobalDefinitions.bx * 30.44, GlobalDefinitions.by * 30.44);
 			Coordinate shootingPosition = new Coordinate(-5 * 30.44, (9.3 - GlobalDefinitions.d1)* 30.44);
 			
