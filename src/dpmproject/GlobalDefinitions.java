@@ -60,7 +60,9 @@ public final class GlobalDefinitions {
   public static int by = -1;
   public static int omega = -1;
   
-  public static final Coordinate HOOP_POSITION = new Coordinate(5,6); 
+  public static boolean isGettingBall;
+  public static boolean isShooting;
+
   
   
   public static void init() {
