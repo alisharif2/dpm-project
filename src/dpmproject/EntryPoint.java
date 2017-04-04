@@ -43,11 +43,14 @@ public class EntryPoint {
 		
 		// FOR TESTING 
 		
-		GlobalDefinitions.DEF_TEAM = 2;
+		GlobalDefinitions.FWD_TEAM = 2;
+		GlobalDefinitions.DEF_TEAM = 1;
 		GlobalDefinitions.d1 = 7;
 		GlobalDefinitions.w2 = 4;
 		GlobalDefinitions.DEF_CORNER = 1;
 		GlobalDefinitions.FWD_CORNER = 1;
+		GlobalDefinitions.bx = -1;
+		GlobalDefinitions.by = 5;
 		
 		// END TESTING
 		
@@ -89,14 +92,19 @@ public class EntryPoint {
 			
 			td.turnTo(90, true);
 			
+			bl.lower();
+			
+			bl.raise();
+			
 		}
 		
 		else{
 	
-			usl.doLocalization(GlobalDefinitions.FWD_CORNER);
+			//usl.doLocalization(GlobalDefinitions.FWD_CORNER);
 			
 			Coordinate ballDispenser = new Coordinate(GlobalDefinitions.bx * 30.44, GlobalDefinitions.by * 30.44);
-			Coordinate shootingPosition = new Coordinate(-5 * 30.44, (9.3 - GlobalDefinitions.d1)* 30.44);
+			Coordinate originalBallDispenser = new Coordinate(GlobalDefinitions.bx * 30.44, GlobalDefinitions.by * 30.44);
+			Coordinate shootingPosition = new Coordinate(5 * 30.44, (9.3 - GlobalDefinitions.d1)* 30.44);
 			
 			if(GlobalDefinitions.bx == -1){
 				
@@ -119,8 +127,6 @@ public class EntryPoint {
 				
 			}
 			
-			ballDispenser.x = ballDispenser.x*(-1);
-			
 			GlobalDefinitions.isGettingBall = true;
 			GlobalDefinitions.isShooting = false;
 			
@@ -130,7 +136,10 @@ public class EntryPoint {
 				while(GlobalDefinitions.isGettingBall){
 					
 					td.travelTo(ballDispenser);
-					td.turnTo((td.getAng(ballDispenser)) + Math.PI,true);
+					td.turnTo((td.getAng(originalBallDispenser)) + Math.PI,true);
+					
+					bl.lower();
+					bl.raise();
 					
 					GlobalDefinitions.isGettingBall = false;
 					GlobalDefinitions.isShooting = true;
@@ -142,6 +151,7 @@ public class EntryPoint {
 				Sound.beep();
 					
 				while(GlobalDefinitions.isShooting){
+					/*
 					
 					bl.reload();
 					td.travelTo(shootingPosition);
@@ -149,6 +159,8 @@ public class EntryPoint {
 					
 					GlobalDefinitions.isShooting = false;
 					GlobalDefinitions.isGettingBall = true;
+					
+					*/
 				}
 			}
 		}

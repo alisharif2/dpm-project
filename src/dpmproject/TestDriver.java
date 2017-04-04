@@ -38,8 +38,8 @@ public class TestDriver {
 		
 		this.turnTo(minAng, true);
 		
-		leftMotor.setSpeed(ROTATE_SPEED);
-		rightMotor.setSpeed(ROTATE_SPEED);
+		leftMotor.setSpeed(FORWARD_SPEED);
+		rightMotor.setSpeed(FORWARD_SPEED);
 		
 		double distance = Math.sqrt(Math.pow(odo.getX() - coordinate.x, 2) + Math.pow(odo.getY() - coordinate.y, 2));
 		
@@ -58,8 +58,8 @@ public class TestDriver {
 		
 		this.turnTo(minAng, true);
 		
-		leftMotor.setSpeed(ROTATE_SPEED);
-		rightMotor.setSpeed(ROTATE_SPEED);
+		leftMotor.setSpeed(FORWARD_SPEED);
+		rightMotor.setSpeed(FORWARD_SPEED);
 
 		double distance = Math.abs(odo.getY() - coordinate.y);
 		
@@ -76,8 +76,8 @@ public class TestDriver {
 		
 		this.turnTo(minAng, true);
 		
-		leftMotor.setSpeed(ROTATE_SPEED);
-		rightMotor.setSpeed(ROTATE_SPEED);
+		leftMotor.setSpeed(FORWARD_SPEED);
+		rightMotor.setSpeed(FORWARD_SPEED);
 
 		distance = Math.abs(odo.getX() - coordinate.x);
 		
