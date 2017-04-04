@@ -50,5 +50,15 @@ public class BallLauncher extends Thread implements BallLauncherInterface {
 		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
 
 	}
+	public void raise(){
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
+		GlobalDefinitions.SHOOTMOTOR.rotate(850);
+
+	}
+	public void lower(){
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
+		GlobalDefinitions.SHOOTMOTOR.rotate(-850);
+		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
+	}
 	
 }

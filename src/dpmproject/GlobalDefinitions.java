@@ -24,7 +24,7 @@ public final class GlobalDefinitions {
   public static final int DEG_SHOOT                           = 270;  // In degrees
   public static final double LIN_ERR                          = 0.5;  // In centimeters
   public static final double ACCELERATION                     = 4000; // In degrees per second per second
-  public static final double FORWARD_SPEED                    = 400; // In degrees per second
+  public static final double FORWARD_SPEED                    = 255.0; // In degrees per second
   public static final double TURN_SPEED                       = 100.0; // In degrees per second
   public static final double TILE_SIZE                        = 30.48;
 
@@ -60,7 +60,9 @@ public final class GlobalDefinitions {
   public static int by = -1;
   public static int omega = -1;
   
-  public static final Coordinate HOOP_POSITION = new Coordinate(5,6); 
+  public static boolean isGettingBall;
+  public static boolean isShooting;
+
   
   
   public static void init() {
