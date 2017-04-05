@@ -43,14 +43,24 @@ public class EntryPoint {
         //nav.turnTo(2, odo);
 		if(GlobalDefinitions.FWD_TEAM==2){
 			
-			if(GlobalDefinitions.bx<0)
+			if(GlobalDefinitions.bx<0){
 				GlobalDefinitions.bx=3;
-			else if(GlobalDefinitions.bx>GlobalDefinitions.TILE_SIZE*10)
+				nav.moveTo(GlobalDefinitions.by, GlobalDefinitions.bx+20, odo);
+			}
+			else if(GlobalDefinitions.bx>GlobalDefinitions.TILE_SIZE*10){
 				GlobalDefinitions.bx-=(GlobalDefinitions.TILE_SIZE+3);
-			else if(GlobalDefinitions.by<0)
+				nav.moveTo(GlobalDefinitions.by, GlobalDefinitions.bx-20, odo);
+
+			}
+			else if(GlobalDefinitions.by<0){
 				GlobalDefinitions.by=3;
-			else
+				nav.moveTo(GlobalDefinitions.by+20, GlobalDefinitions.bx, odo);
+			}
+			else{
 				GlobalDefinitions.by-=(GlobalDefinitions.TILE_SIZE+3);
+				nav.moveTo(GlobalDefinitions.by-20, GlobalDefinitions.bx, odo);
+
+			}
 					
 
 			loc.doLocalization(GlobalDefinitions.FWD_CORNER);
