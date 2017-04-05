@@ -44,13 +44,13 @@ public class EntryPoint {
 		// FOR TESTING 
 		
 		GlobalDefinitions.FWD_TEAM = 2;
-		GlobalDefinitions.DEF_TEAM = 1;
+		GlobalDefinitions.DEF_TEAM = 2;
 		GlobalDefinitions.d1 = 7;
 		GlobalDefinitions.w2 = 4;
-		GlobalDefinitions.DEF_CORNER = 1;
+		GlobalDefinitions.DEF_CORNER = 3;
 		GlobalDefinitions.FWD_CORNER = 1;
 		GlobalDefinitions.bx = -1;
-		GlobalDefinitions.by = 5;
+		GlobalDefinitions.by = 2;
 		
 		// END TESTING
 		
@@ -78,17 +78,14 @@ public class EntryPoint {
 
 			usl.doLocalization(GlobalDefinitions.DEF_CORNER);
 			
-			
 			System.out.println(odo.getX());
 			System.out.println(odo.getY());
 			System.out.println(odo.getAng());
 			
-			td.diagonalTravelTo(new Coordinate(0,0));
-
+			Coordinate defensePosition = new Coordinate((((10 - (GlobalDefinitions.d1)) + (10 - GlobalDefinitions.w2))/2) * 30.44, 5 * 30.44);
 			
-			Coordinate defensePosition = new Coordinate(5 * 30.44, (((10 - (GlobalDefinitions.d1)) + (10 - GlobalDefinitions.w2))/2) * 30.44 );
-			
-			td.diagonalTravelTo(defensePosition);
+			//td.diagonalTravelTo(defensePosition);
+			td.diagonalTravelTo(new Coordinate(6,9));
 			
 			td.turnTo(90, true);
 			
@@ -100,9 +97,9 @@ public class EntryPoint {
 		
 		else{
 	
-			//usl.doLocalization(GlobalDefinitions.FWD_CORNER);
+			usl.doLocalization(GlobalDefinitions.FWD_CORNER);
 			
-			Coordinate ballDispenser = new Coordinate(GlobalDefinitions.bx * 30.44, GlobalDefinitions.by * 30.44);
+			Coordinate ballDispenser = new Coordinate(GlobalDefinitions.by * 30.44,GlobalDefinitions.bx * 30.44);
 			Coordinate originalBallDispenser = new Coordinate(GlobalDefinitions.bx * 30.44, GlobalDefinitions.by * 30.44);
 			Coordinate shootingPosition = new Coordinate(5 * 30.44, (9.3 - GlobalDefinitions.d1)* 30.44);
 			
@@ -127,6 +124,7 @@ public class EntryPoint {
 				
 			}
 			
+			
 			GlobalDefinitions.isGettingBall = true;
 			GlobalDefinitions.isShooting = false;
 			
@@ -135,8 +133,9 @@ public class EntryPoint {
 				
 				while(GlobalDefinitions.isGettingBall){
 					
-					td.travelTo(ballDispenser);
-					td.turnTo((td.getAng(originalBallDispenser)) + Math.PI,true);
+					td.diagonalTravelTo(new Coordinate(30,30));
+					td.diagonalTravelTo(ballDispenser);
+					td.turnTo((td.getAng(originalBallDispenser)) + Math.PI/2,true);
 					
 					bl.lower();
 					bl.raise();
