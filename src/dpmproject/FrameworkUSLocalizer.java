@@ -9,7 +9,7 @@ import lejos.utility.Delay;
 public class FrameworkUSLocalizer {
 	
 	private final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
-	private final int MIN_WALL_DIST = 32;
+	private final int MIN_WALL_DIST = 35;
 	private double[] cornerPos;
 	private double cornerAngle;
 	private Odometer odo;

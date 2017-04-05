@@ -208,4 +208,8 @@ public class Odometer implements TimerListener, OdometerInterface {
 		else
 			return d - 360.0;
 	}
+	
+	public void setAngle(double angle){
+		this.theta = angle;
+	}
 }

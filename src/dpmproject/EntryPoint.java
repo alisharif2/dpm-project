@@ -47,28 +47,13 @@ public class EntryPoint {
 		GlobalDefinitions.DEF_TEAM = 2;
 		GlobalDefinitions.d1 = 7;
 		GlobalDefinitions.w2 = 4;
-		GlobalDefinitions.DEF_CORNER = 3;
+		GlobalDefinitions.DEF_CORNER = 2;
 		GlobalDefinitions.FWD_CORNER = 1;
 		GlobalDefinitions.bx = -1;
 		GlobalDefinitions.by = 2;
 		
 		// END TESTING
-		
-		
-		/*
-		if(GlobalDefinitions.FWD_CORNER == 1){
-			
-		}
-		else if(GlobalDefinitions.FWD_CORNER == 2){
-			
-		}
-		else if(GlobalDefinitions.FWD_CORNER == 3){
-			
-		}
-		else{
-			
-		}
-		*/
+	
 		
 		TestDriver td = new TestDriver(odo);
 		BallLauncher bl = new BallLauncher();
@@ -77,21 +62,15 @@ public class EntryPoint {
 		if(GlobalDefinitions.DEF_TEAM == 2){
 
 			usl.doLocalization(GlobalDefinitions.DEF_CORNER);
-			
-			System.out.println(odo.getX());
-			System.out.println(odo.getY());
-			System.out.println(odo.getAng());
-			
+			System.out.println();
 			Coordinate defensePosition = new Coordinate((((10 - (GlobalDefinitions.d1)) + (10 - GlobalDefinitions.w2))/2) * 30.44, 5 * 30.44);
 			
-			//td.diagonalTravelTo(defensePosition);
-			td.diagonalTravelTo(new Coordinate(6,9));
+			td.diagonalTravelTo(defensePosition);
 			
 			td.turnTo(90, true);
 			
 			bl.lower();
 			
-			bl.raise();
 			
 		}
 		
@@ -150,7 +129,8 @@ public class EntryPoint {
 				Sound.beep();
 					
 				while(GlobalDefinitions.isShooting){
-					/*
+					
+					//Implement Shooting Julien
 					
 					bl.reload();
 					td.travelTo(shootingPosition);
@@ -159,7 +139,7 @@ public class EntryPoint {
 					GlobalDefinitions.isShooting = false;
 					GlobalDefinitions.isGettingBall = true;
 					
-					*/
+					
 				}
 			}
 		}
