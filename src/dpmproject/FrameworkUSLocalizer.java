@@ -1,3 +1,4 @@
+
 package dpmproject;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +11,8 @@ public class FrameworkUSLocalizer {
 	
 	private final float ROTATION_SPEED = (float) GlobalDefinitions.TURN_SPEED;
 	private final int MIN_WALL_DIST = 32;
-
+	private double[] cornerPos;
+	private double cornerAngle;
 	private Odometer odo;
 	private SensorInterface usSensor;
 	
@@ -19,16 +21,36 @@ public class FrameworkUSLocalizer {
 		this.usSensor = us;
 	}
 	
-	public void doLocalization() {
+	public void doLocalization(int corner) {
 		double alpha, beta;
 		odo.getAng();
-		
+		if (corner==1){
+			cornerPos=new double[] {0,0};
+			cornerAngle=0;
+		}
+		if (corner==2){
+			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE+12,0};
+			cornerAngle=270;
+		}
+		if (corner==3){
+			cornerPos=new double[] {10*GlobalDefinitions.TILE_SIZE+12,10*GlobalDefinitions.TILE_SIZE+12};
+			cornerAngle=180;
+		}
+		if (corner==4){
+			cornerPos=new double[] {0,10*GlobalDefinitions.TILE_SIZE+12};
+			cornerAngle=90;
+		}
 		// Initialize our locomotor
 		Navigation localizerLocomotor = new Navigation(odo);
 
 		// rotate the robot until it sees no wall
-		localizerLocomotor.setSpeeds(ROTATION_SPEED, -ROTATION_SPEED);	// TODO use the turnTo method instead of this garbage
 		
+		localizerLocomotor.setSpeeds(ROTATION_SPEED, -ROTATION_SPEED);	// TODO use the turnTo method instead of this garbage
+		while(true){
+			if(usSensor.getFilteredData()>MIN_WALL_DIST+5){
+				break;
+			}
+		}
 		// keep rotating until the robot sees a wall, then latch the angle
 		while(true) {
 			if(usSensor.getFilteredData() < MIN_WALL_DIST) {
@@ -60,19 +82,16 @@ public class FrameworkUSLocalizer {
 		}
 				
 		// update the odometer position with our new heading(zero degrees)
-		odo.setPosition(new double [] {0, 0, headingCorrection + beta}, new boolean [] {false, false, true});
+		odo.setPosition(new double [] {0, 0, headingCorrection + beta - cornerAngle}, new boolean [] {false, false, true});
 		Delay.msDelay(200);
-		localizerLocomotor.turnTo(180, true);
+		localizerLocomotor.turnTo(90, true);
 		
-		double x = usSensor.getFilteredData() - GlobalDefinitions.TILE_SIZE;
-		odo.setPosition(new double[] {x, x, 0}, new boolean [] {true, true, false});
 		
-		localizerLocomotor.travelTo(0, 0);
+		double[] x=new double[] {cornerPos[0]-6,cornerPos[1]-9};
+		odo.setPosition(new double[] {x[0], x[1], 0}, new boolean [] {true, true, false});
+		
 		localizerLocomotor.turnTo(0, true);
 		Delay.msDelay(200);
-		
-		odo.setPosition(new double[] {GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].x, GlobalDefinitions.startPoints[GlobalDefinitions.FWD_CORNER].y, GlobalDefinitions.startOrientations[GlobalDefinitions.FWD_CORNER]},
-				new boolean[] {true, true, true});		
 	}
 
 }

@@ -35,18 +35,18 @@ public class BallLauncher extends Thread implements BallLauncherInterface {
 
 	public void pullElasticBack(){
 		GlobalDefinitions.RELOADMOTOR.setSpeed(600);
-		GlobalDefinitions.RELOADMOTOR.rotate(362*27);
+		GlobalDefinitions.RELOADMOTOR.rotate(363*26);
 		Sound.beep();
-		GlobalDefinitions.RELOADMOTOR.rotate(-362*27);
+		GlobalDefinitions.RELOADMOTOR.rotate(-363*26);
 	}
 	
 	public void dropBall(){
 		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
-		GlobalDefinitions.SHOOTMOTOR.rotate(500);
+		GlobalDefinitions.SHOOTMOTOR.rotate(570);
 		Sound.beep();
 		GlobalDefinitions.SHOOTMOTOR.setSpeed(50);
 
-		GlobalDefinitions.SHOOTMOTOR.rotate(-500);
+		GlobalDefinitions.SHOOTMOTOR.rotate(-570);
 		GlobalDefinitions.SHOOTMOTOR.setSpeed(300);
 
 	}
